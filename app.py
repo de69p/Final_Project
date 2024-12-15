@@ -359,15 +359,11 @@ def mapping_page():
 
     # [DA9]: Additional calculations for marker radius
     # Using a function to determine radius from Employees
-    def calculate_marker_radius(num_employees, min_radius=1000, max_radius=5000):
-        """
-        Normalize the radius values for marker sizes to keep them consistent during scaling.
-        """
-        min_value = df['Employees'].min()
-        max_value = df['Employees'].max()
-        normalized_radius = min_radius + (num_employees - min_value) * (max_radius - min_radius) / (
-                    max_value - min_value)
-        return normalized_radius
+    def calculate_marker_radius(num_employees):
+        # Use a formula for radius (r = √num_employees / 2)
+        scale_factor = 5
+        radius = np.sqrt(num_employees) * scale_factor
+        return radius
 
     # [DA8]: Iterate through rows with iterrows()
     marker_radius = []
@@ -414,7 +410,10 @@ def mapping_page():
         get_position='[Longitude, Latitude]',
         get_color='[200, 30, 0, 160]',
         get_radius='MarkerRadius',
-        pickable=True
+        pickable=True,
+        radiusScale=0.1,
+        radius_min_pixels=2,
+        radius_max_pixels=50
     )
 
     # Tooltip for Map
