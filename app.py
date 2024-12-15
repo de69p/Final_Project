@@ -2,37 +2,37 @@
 Final Project: Interactive Data Explorer with Fortune 500 Corporate Headquarters Data
 Author: [Your Name]
 
-This Streamlit application explores a dataset of Fortune 500 company headquarters.
+This Streamlit application explores a dataset of Fortune 500 company headquarters
 It demonstrates various Python and data analysis features as required:
 
 Python Features:
-[PY1] A function with two or more parameters (one with a default), called multiple times.
-[PY2] A function that returns more than one value.
-[PY3] Error checking with try/except.
-[PY4] A list comprehension.
-[PY5] A dictionary usage (keys, values).
+[PY1] A function with two or more parameters (one with a default), called multiple times
+[PY2] A function that returns more than one value
+[PY3] Error checking with try/except
+[PY4] A list comprehension
+[PY5] A dictionary usage (keys, values)
 
 Streamlit Features:
-[ST1], [ST2], [ST3] At least three different widgets.
-[ST4] Customized page design features (sidebar, title, images).
+[ST1], [ST2], [ST3] At least three different widgets
+[ST4] Customized page design features (sidebar, title, images)
 
 Visualizations:
-[VIZ1], [VIZ2], [VIZ3], [VIZ4], [VIZ5], [VIZ6], [VIZ7] Seven different charts/graphs/tables.
-[MAP] A detailed PyDeck map with customization.
+[VIZ1], [VIZ2], [VIZ3], [VIZ4], [VIZ5], [VIZ6], [VIZ7] Seven different charts/graphs/tables
+[MAP] A detailed PyDeck map with customization
 
 Data Analytics:
-[DA1] Data cleaning/manipulation.
-[DA2] Sorting data.
-[DA3] Finding top largest/smallest values.
-[DA4] Filter data by one condition.
-[DA5] Filter data by multiple conditions.
-[DA6] Pivot table analysis.
-[DA7] Adding/dropping/selecting/creating new columns.
-[DA8] Iterate through rows with iterrows().
-[DA9] Perform calculations on DataFrame columns.
-[DA10] Additional calculations for deeper insights.
+[DA1] Data cleaning/manipulation
+[DA2] Sorting data
+[DA3] Finding top largest/smallest values
+[DA4] Filter data by one condition
+[DA5] Filter data by multiple conditions
+[DA6] Pivot table analysis
+[DA7] Adding/dropping/selecting/creating new columns
+[DA8] Iterate through rows with iterrows()
+[DA9] Perform calculations on DataFrame columns
+[DA10] Additional calculations for deeper insights
 
-The app includes multiple pages, accessible through a sidebar.
+The app includes multiple pages, accessible through a sidebar
 """
 
 import numpy as np
