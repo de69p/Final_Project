@@ -352,7 +352,6 @@ def visualization_analytics_page():
 
 
 # Mapping Page [MAP]
-# Mapping Page [MAP]
 def mapping_page():
     # https://docs.streamlit.io/develop/api-reference/charts/st.pydeck_chart
     st.title("Mapping: Headquarters Locations")
@@ -361,7 +360,7 @@ def mapping_page():
     # [DA9]: Additional calculations for marker radius
     # Using a function to determine radius from Employees
     def calculate_marker_radius(num_employees):
-        # Use a formula for radius (r = √num_employees)
+        # Use a formula for radius (r = √num_employees / 2)
         radius = np.sqrt(num_employees)
         return radius
 
@@ -372,42 +371,29 @@ def mapping_page():
         marker_radius.append(radius)
     df['MarkerRadius'] = marker_radius
 
-    # Sidebar Filters
-    st.sidebar.header("Filters")
-
-    # Dropdown for state selection
-    unique_states = sorted(df['State'].unique())
-    selected_states = st.sidebar.multiselect(
-        "Select States:",
-        options=unique_states,
-        default=None
-    )
-
-    # Dropdown for city selection
+    # Dropdown for city selection to filter map
     unique_cities = sorted(df['City'].unique())
-    selected_cities = st.sidebar.multiselect(
-        "Select Cities:",
+    selected_cities = st.multiselect(
+        "Select Cities to Zoom and Filter:",
         options=unique_cities,
         default=None
     )
 
-    # Apply filters for state and city
-    filtered_map_df = df.copy()
-
-    if selected_states:
-        filtered_map_df = filtered_map_df[filtered_map_df['State'].isin(selected_states)]
+    # Zoom in if cities are selected
     if selected_cities:
-        filtered_map_df = filtered_map_df[filtered_map_df['City'].isin(selected_cities)]
-
-    # Set map zoom and center
-    if not filtered_map_df.empty:
+        filtered_map_df = df[df['City'].isin(selected_cities)]
         avg_lat = filtered_map_df['Latitude'].mean()
         avg_lon = filtered_map_df['Longitude'].mean()
-        zoom_level = 10 if selected_cities or selected_states else 3
+        zoom_level = 10
+    # Show full map if no cities are selected
     else:
-        avg_lat, avg_lon, zoom_level = 37.0902, -95.7129, 3  # Default to USA center
+        filtered_map_df = df
+        avg_lat = df['Latitude'].mean()
+        avg_lon = df['Longitude'].mean()
+        zoom_level = 3
 
     # https://deckgl.readthedocs.io/en/latest/view_state.html
+    # PyDeck View State
     view_state = pdk.ViewState(
         latitude=avg_lat,
         longitude=avg_lon,
@@ -416,6 +402,7 @@ def mapping_page():
     )
 
     # https://deckgl.readthedocs.io/en/latest/layer.html
+    # PyDeck Scatterplot Layer
     layer = pdk.Layer(
         'ScatterplotLayer',
         data=filtered_map_df,
@@ -425,11 +412,13 @@ def mapping_page():
         pickable=True
     )
 
+    # Tooltip for Map
     tooltip = {
         "html": "<b>Company:</b> {CompanyName} <br/><b>City:</b> {City}<br/><b>Revenue:</b> {Revenue} M<br/><b>Profit:</b> {Profit} M",
         "style": {"backgroundColor": "steelblue", "color": "white"}
     }
 
+    # PyDeck Chart
     deck = pdk.Deck(
         map_style='mapbox://styles/mapbox/light-v9',
         initial_view_state=view_state,
@@ -438,7 +427,6 @@ def mapping_page():
     )
 
     st.pydeck_chart(deck)
-
 
 
 # Additional Insights Page
