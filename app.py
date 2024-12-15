@@ -410,10 +410,7 @@ def mapping_page():
         get_position='[Longitude, Latitude]',
         get_color='[200, 30, 0, 160]',
         get_radius='MarkerRadius',
-        pickable=True,
-        radiusScale=0.1,
-        radius_min_pixels=2,
-        radius_max_pixels=50
+        pickable=True
     )
 
     # Tooltip for Map
