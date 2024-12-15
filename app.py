@@ -95,12 +95,12 @@ df['RevenuePerEmployee'] = df['Revenue'] / df['Employees']
 df['EfficiencyRatio'] = df['Profit'] / df['Revenue']
 
 
-# [PY5]: A dictionary usage (keys, values).
+# [PY5]: A dictionary usage (keys, values)
 # Count occurrences of each state and store in a dictionary
 state_counts_series = df['State'].value_counts()
 state_counts = state_counts_series.to_dict()
 
-# [PY4]: A list comprehension.
+# [PY4]: A list comprehension
 # Create a list of tuples (CompanyName, City, State) for reference
 company_list = [(name, city, state) for name, city, state in zip(df['CompanyName'], df['City'], df['State'])]
 
@@ -354,7 +354,6 @@ def visualization_analytics_page():
 # Mapping Page [MAP]
 def mapping_page():
     # https://docs.streamlit.io/develop/api-reference/charts/st.pydeck_chart
-
     st.title("Mapping: Headquarters Locations")
     st.write("Below is an interactive map showing the company headquarters.")
 
