@@ -155,7 +155,7 @@ def home_page():
     st.write("### Quick Facts:")
     st.write(f"- Total Companies: {len(df)}")
     st.write(f"- States Represented: {len(df['State'].unique())}")
-    st.markdown(f"- Revenue Range: <b>${rev_min}M - ${rev_max}M</b>", unsafe_allow_html=True)
+    st.text(f"- Revenue Range: ${rev_min}M - ${rev_max}M")
     st.write("Start exploring the innovation hub!")
 
 
