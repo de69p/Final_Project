@@ -102,10 +102,7 @@ state_counts = state_counts_series.to_dict()
 
 # [PY4]: A list comprehension.
 # Create a list of tuples (CompanyName, City, State) for reference
-company_list = []
-for name, city, state in zip(df['CompanyName'], df['City'], df['State']):
-    company_tuple = (name, city, state)
-    company_list.append(company_tuple)
+company_list = [(name, city, state) for name, city, state in zip(df['CompanyName'], df['City'], df['State'])]
 
 
 # [PY1]: A function with two or more parameters (one with a default), called multiple times
