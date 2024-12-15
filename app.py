@@ -361,7 +361,7 @@ def mapping_page():
     # Using a function to determine radius from Employees
     def calculate_marker_radius(num_employees):
         # Use a formula for radius (r = √num_employees / 2)
-        scale_factor = 5
+        scale_factor = 2
         radius = np.sqrt(num_employees) * scale_factor
         return radius
 
