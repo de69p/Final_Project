@@ -135,7 +135,7 @@ def get_revenue_range(dataframe: pd.DataFrame):
 rev_min, rev_max = get_revenue_range(df)
 
 # Sidebar Navigation [ST4]
-st.sidebar.image("sv2.png", use_container_width=True)
+st.sidebar.image("logo.png", use_container_width=True)
 
 # Define pages and name them
 page = st.sidebar.radio(
@@ -146,9 +146,9 @@ page = st.sidebar.radio(
 
 # Home Page
 def home_page():
-    st.title("Silicon Valley Headquarters Explorer")
+    st.title("Fortune 500 Headquarters Explorer")
     st.write(
-        "Welcome to the Silicon Valley Explorer! Discover details about companies based in the heart of innovation, including headquarters, revenue, profit, and more.")
+        "Welcome to the Fortune 500 Explorer! Discover details about Fortune 500 companies, including headquarters, revenue, profit, and more.")
     st.write("### How to Use:")
     st.write("- Use the sidebar to navigate between pages.")
     st.write("- Explore data, analytics, and interactive maps.")
