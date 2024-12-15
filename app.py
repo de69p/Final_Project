@@ -138,7 +138,7 @@ def get_revenue_range(dataframe: pd.DataFrame):
 rev_min, rev_max = get_revenue_range(df)
 
 # Sidebar Navigation [ST4]
-st.sidebar.image("sv2.png", use_column_width=True)
+st.sidebar.image("sv2.png", use_container_width=True)
 
 # Define pages and name them
 page = st.sidebar.radio(
