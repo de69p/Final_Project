@@ -359,11 +359,15 @@ def mapping_page():
 
     # [DA9]: Additional calculations for marker radius
     # Using a function to determine radius from Employees
-    def calculate_marker_radius(num_employees):
-        # Use a formula for radius (r = √num_employees / 2)
-        scale_factor = 5
-        radius = np.sqrt(num_employees) * scale_factor
-        return radius
+    def calculate_marker_radius(num_employees, min_radius=1000, max_radius=5000):
+        """
+        Normalize the radius values for marker sizes to keep them consistent during scaling.
+        """
+        min_value = df['Employees'].min()
+        max_value = df['Employees'].max()
+        normalized_radius = min_radius + (num_employees - min_value) * (max_radius - min_radius) / (
+                    max_value - min_value)
+        return normalized_radius
 
     # [DA8]: Iterate through rows with iterrows()
     marker_radius = []
@@ -394,6 +398,7 @@ def mapping_page():
         zoom_level = 3
 
     # https://deckgl.readthedocs.io/en/latest/view_state.html
+    # PyDeck View State
     view_state = pdk.ViewState(
         latitude=avg_lat,
         longitude=avg_lon,
@@ -402,6 +407,7 @@ def mapping_page():
     )
 
     # https://deckgl.readthedocs.io/en/latest/layer.html
+    # PyDeck Scatterplot Layer
     layer = pdk.Layer(
         'ScatterplotLayer',
         data=filtered_map_df,
@@ -411,11 +417,13 @@ def mapping_page():
         pickable=True
     )
 
+    # Tooltip for Map
     tooltip = {
         "html": "<b>Company:</b> {CompanyName} <br/><b>City:</b> {City}<br/><b>Revenue:</b> {Revenue} M<br/><b>Profit:</b> {Profit} M",
         "style": {"backgroundColor": "steelblue", "color": "white"}
     }
 
+    # PyDeck Chart
     deck = pdk.Deck(
         map_style='mapbox://styles/mapbox/light-v9',
         initial_view_state=view_state,
